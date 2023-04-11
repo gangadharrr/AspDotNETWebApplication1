@@ -23,10 +23,10 @@ namespace AspDotNETWebApplication1.Pages.Books
                         while (reader.Read())
                         {
                             Books book = new Books();
-                            book.Id = reader[0].ToString();
-                            book.Title= reader[1].ToString();
-                            book.Author = reader[2].ToString();
-                            book.Publication = reader[3].ToString();
+                            book.Id = (string)reader["BOOK_CODE"];
+                            book.Title = (string)reader["BOOK_TITLE"];
+                            book.Author = (string)reader["AUTHOR"];
+                            book.Publication = (string)reader["PUBLICATION"];
                             book.Price = (double)reader[4];
                             BookList.Add(book);
                         }
@@ -43,7 +43,44 @@ namespace AspDotNETWebApplication1.Pages.Books
                 Console.WriteLine(ex.Message);
             }
         }
+        public void OnPost()
+        {
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(SQLServerConnect.conn))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand cmd = sqlConnection.CreateCommand())
+                    {
+                        cmd.CommandText = "SELECT BOOK_CODE, BOOK_TITLE, AUTHOR, PUBLICATION, PRICE " +
+                                            "FROM LMS_BOOK_DETAILS";
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            Books book = new Books();
+                            book.Id = reader[0].ToString();
+                            book.Title = reader[1].ToString();
+                            book.Author = reader[2].ToString();
+                            book.Publication = reader[3].ToString();
+                            book.Price = (double)reader[4];
+                            BookList.Add(book);
+                        }
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
+
     public class Books
     {
         public string Id { get; set; }

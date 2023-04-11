@@ -7,6 +7,7 @@ namespace AspDotNETWebApplication1.Pages.Books
     public class CreateBook : PageModel
     {
         public string Message="";
+        public bool Error=false;
         public void OnGet()
         {
         }
@@ -33,10 +34,12 @@ namespace AspDotNETWebApplication1.Pages.Books
             }
             catch (SqlException sqlEx) 
             {
+                Error = true;
                 Message = sqlEx.Message;
             }
             catch(Exception ex)
             {
+                Error = true;
                 Message = ex.Message;
             }
         }

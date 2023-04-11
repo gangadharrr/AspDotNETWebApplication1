@@ -1,0 +1,79 @@
+﻿@page
+@model AspDotNETWebApplication1.Pages.Books.UpdateBook
+@{
+}
+<br>
+<h1>Book List</h1>
+<a href="/Books/CreateBook"><button class="btn-primary btn-sm" >Add Book</button></a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication</th>
+            <th>Price</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.BookList)
+        {
+            if (Request.Query["bookCode"] == book.Id)
+            {
+                <form class="form-text" method="post" >
+                <tr>
+                    <td>@book.Id</td>
+                <td>
+                    <div class="row mb-3">
+                        <div >
+                            <input type="text" name="Title" placeholder="Enter Title" required="True" value="@book.Title"/>
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="row mb-3">
+                        <div >
+                            <input type="text" name="Author" placeholder="Enter Author" required="True" value="@book.Author" />
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="row mb-3">
+                        <div >
+                            <input type="text" name="Publication" placeholder="Enter Publication" required="True" value="@book.Publication" />
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="row mb-3">
+                        <div >
+                            <input type="number" name="Price" placeholder="Enter Price" required="True" value="@book.Price" />
+                        </div>
+                    </div>
+
+                </td>   
+                    <td><button class="btn-primary btn-sm" type="submit" >Apply</button></td>
+
+
+                </tr>
+                </form> 
+            }
+            else
+            {
+                <tr>
+                    <td>@book.Id</td>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.Publication</td>
+                    <td>@book.Price</td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>

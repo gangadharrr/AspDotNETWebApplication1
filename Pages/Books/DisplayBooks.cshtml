@@ -1,10 +1,12 @@
 ﻿@page
 @model AspDotNETWebApplication1.Pages.Books.DisplayBooks
 @{
+    int index = 0;
 }
 <br>
 <h1>Book List</h1>
 <a href="/Books/CreateBook"><button class ="btn-primary btn-sm">Add Book</button></a>
+
 <table class="table">
     <thead>
         <tr>
@@ -13,19 +15,26 @@
             <th>Author</th>
             <th>Publication</th>
             <th>Price</th>
+          
         </tr>
     </thead>
     <tbody>
+        
         @foreach (var book in Model.BookList)
-            {
-                <tr>
-                    <td>@book.Id</td>
-                    <td>@book.Title</td>
-                    <td>@book.Author</td>
-                    <td>@book.Publication</td>
-                    <td>@book.Price</td>
-                </tr>
-            }
+        {
+
+            <tr>
+                <td>@book.Id</td>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Publication</td>
+                <td>@book.Price</td>
+                <td><a href="/Books/UpdateBook?bookCode=@book.Id"><button class="btn-primary btn-sm">edit</button></a></td>
+            </tr>
+            
+                index += 1;
+            
+        }
     </tbody>
 
 </table>
