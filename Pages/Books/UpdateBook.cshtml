@@ -2,6 +2,7 @@
 @model AspDotNETWebApplication1.Pages.Books.UpdateBook
 @{
 }
+
 <br>
 <h1>Book List</h1>
 <a href="/Books/CreateBook"><button class="btn-primary btn-sm" >Add Book</button></a>
@@ -57,7 +58,8 @@
                     </div>
 
                 </td>   
-                    <td><button class="btn-primary btn-sm" type="submit" >Apply</button></td>
+                    <td><button class="btn-primary btn-sm" type="submit" style="background-color:green;border-color:green;">Save</button></td>
+                    <td><a href="/Books/DisplayBooks"><button class="btn-primary btn-sm" style="background-color:red;border-color:red;">cancel</button></a></td>
 
 
                 </tr>
@@ -71,6 +73,8 @@
                     <td>@book.Author</td>
                     <td>@book.Publication</td>
                     <td>@book.Price</td>
+                    <td><button class="btn-primary btn-sm" style="background-color:grey;border-color:grey">edit</button></a></td>
+                    <td><button class="btn-primary btn-sm" style="background-color:grey;border-color:grey" >delete</button></td>
                 </tr>
             }
         }
